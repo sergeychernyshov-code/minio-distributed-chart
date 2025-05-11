@@ -21,7 +21,7 @@ spec:
           - "--address=:9000"
           - "--console-address=:9001"
           {{- range $i := until (.Values.replicaCount | int) }}
-          {{- range $j := until (.Values.minio.drivesPerNode | int) }}
+          {{- range $j := until ($.Values.minio.drivesPerNode | int) }}
           - http://{{ include "minio.fullname" $ }}-{{ $i }}.{{ include "minio.fullname" $ }}-headless:9000/data{{ $j }}
           {{- end }}
           {{- end }}
@@ -34,13 +34,13 @@ spec:
           - containerPort: 9000
           - containerPort: 9001
         volumeMounts:
-          {{- range $i := until (.Values.minio.drivesPerNode | int) }}
+          {{- range $i := until ($.Values.minio.drivesPerNode | int) }}
           - name: data{{ $i }}
             mountPath: /data{{ $i }}
           {{- end }}
       volumes: []
   volumeClaimTemplates:
-    {{- range $i := until (.Values.minio.drivesPerNode | int) }}
+    {{- range $i := until ($.Values.minio.drivesPerNode | int) }}
     - metadata:
         name: data{{ $i }}
       spec:
