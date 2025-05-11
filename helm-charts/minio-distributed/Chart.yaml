@@ -2,5 +2,5 @@ apiVersion: v2
 name: minio-distributed
 description: MinIO in Distributed Mode
 type: application
-version: 0.0.0+git
+version: 0.0.1
 appVersion: "latest"
