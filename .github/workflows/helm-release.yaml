@@ -24,7 +24,7 @@ jobs:
 
       - name: Update Chart version from Git tag
         run: |
-          sed -i "s/^version:.*/version: ${VERSION}/" charts/minio-distributed/Chart.yaml
+          sed -i "s/^version:.*/version: ${VERSION}/" helm-charts/minio-distributed/Chart.yaml
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.6.0
