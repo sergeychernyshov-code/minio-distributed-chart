@@ -3,4 +3,4 @@ name: minio-distributed
 description: MinIO in Distributed Mode
 type: application
 version: 0.0.0+git
-appVersion: "RELEASE.2024-05-01T00-00-00Z"
+appVersion: "latest"
