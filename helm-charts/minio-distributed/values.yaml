@@ -1,11 +1,11 @@
-replicaCount: 1
+replicaCount: 4
 
 minio:
   image: minio/minio:RELEASE.2024-05-01T00-00-00Z
   accessKey: "minioadmin"
   secretKey: "minioadmin"
-  drivesPerNode: 1 
-  storageRequest: 2Gi
+  drivesPerNode: 4
+  storageRequest: 10Gi
 
 service:
   type: ClusterIP
@@ -27,5 +27,5 @@ ingress:
 initJob:
   enabled: true
   bucket: "my-bucket"
-  fileUrl: "https://media.giphy.com/media/VdiQKDAguhDSi37gn1/giphy.gif"
-  fileName: "giphy.gif"
+  fileUrl: "https://example.com/file.txt"
+  fileName: "file.txt"
