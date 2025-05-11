@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  minio-distributed:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2025-05-11T14:34:30.775348513Z"
+    description: MinIO in Distributed Mode
+    digest: d238d2bab72c2d695b37b87d1bbfa5899adeb05661b8e20569ff606d6cad65a0
+    name: minio-distributed
+    type: application
+    urls:
+    - https://github.com/sergeychernyshov-code/minio-distributed-chart/releases/download/minio-distributed-0.0.1/minio-distributed-0.0.1.tgz
+    version: 0.0.1
+generated: "2025-05-11T14:34:30.775359634Z"
