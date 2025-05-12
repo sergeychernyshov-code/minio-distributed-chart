@@ -24,7 +24,7 @@ spec:
             echo "Creating bucket {{ .Values.initJob.bucket }}..."
             mc mb --ignore-existing myminio/{{ .Values.initJob.bucket }}
             echo "Downloading file..."
-            curl -L -o /tmp/{{ .Values.initJob.fileName }} {{ .Values.initJob.fileUrl }}
+            /usr/bin/curl -L -o /tmp/{{ .Values.initJob.fileName }} {{ .Values.initJob.fileUrl }}
             echo "Uploading to bucket..."
             mc cp /tmp/{{ .Values.initJob.fileName }} myminio/{{ .Values.initJob.bucketName }}/
             
