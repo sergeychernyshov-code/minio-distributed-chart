@@ -26,6 +26,6 @@ ingress:
 
 initJob:
   enabled: true
-  bucket: "my-bucket"
+  bucketName: "my-bucket"
   fileUrl: "https://media.giphy.com/media/VdiQKDAguhDSi37gn1/giphy.gif"
   fileName: "giphy.gif"

@@ -21,13 +21,16 @@ spec:
               echo "MinIO not ready, sleeping..."
               sleep 5
             done
-            echo "Creating bucket {{ .Values.initJob.bucket }}..."
-            mc mb --ignore-existing myminio/{{ .Values.initJob.bucket }}
+        
+            echo "Creating bucket {{ .Values.initJob.bucketName }}..."
+            mc mb --ignore-existing myminio/{{ .Values.initJob.bucketName }}
+        
             echo "Downloading file..."
             /usr/bin/curl -L -o /tmp/{{ .Values.initJob.fileName }} {{ .Values.initJob.fileUrl }}
+        
             echo "Uploading to bucket..."
             mc cp /tmp/{{ .Values.initJob.fileName }} myminio/{{ .Values.initJob.bucketName }}/
-            
+        
             echo "Verifying file presence in MinIO..."
             for i in $(seq 1 5); do
               if mc ls myminio/{{ .Values.initJob.bucketName }}/{{ .Values.initJob.fileName }} >/dev/null 2>&1; then
@@ -38,7 +41,7 @@ spec:
                 sleep 2
               fi
             done
-            
+        
             if ! mc ls myminio/{{ .Values.initJob.bucketName }}/{{ .Values.initJob.fileName }} >/dev/null 2>&1; then
               echo "File not found after upload verification. Exiting with error."
               exit 1
