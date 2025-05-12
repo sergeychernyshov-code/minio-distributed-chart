@@ -10,7 +10,7 @@ spec:
       restartPolicy: OnFailure
       containers:
       - name: minio-init
-        image: minio/mc:latest
+        image: bitnami/minio:latest
         command:
           - /bin/sh
           - -c
