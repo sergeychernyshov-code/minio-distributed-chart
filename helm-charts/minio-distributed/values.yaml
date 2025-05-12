@@ -1,11 +1,11 @@
-replicaCount: 4
+replicaCount: 1
 
 minio:
-  image: minio/minio:RELEASE.2024-05-01T00-00-00Z
+  image: minio/minio:latest-cicd
   accessKey: "minioadmin"
   secretKey: "minioadmin"
-  drivesPerNode: 4
-  storageRequest: 10Gi
+  drivesPerNode: 1
+  storageRequest: 2Gi
 
 service:
   type: ClusterIP
