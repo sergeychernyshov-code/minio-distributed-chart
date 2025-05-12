@@ -26,7 +26,23 @@ spec:
             echo "Downloading file..."
             curl -L -o /tmp/{{ .Values.initJob.fileName }} {{ .Values.initJob.fileUrl }}
             echo "Uploading to bucket..."
-            mc cp /tmp/{{ .Values.initJob.fileName }} myminio/{{ .Values.initJob.bucket }}/
+            mc cp /tmp/{{ .Values.initJob.fileName }} myminio/{{ .Values.initJob.bucketName }}/
+            
+            echo "Verifying file presence in MinIO..."
+            for i in $(seq 1 5); do
+              if mc ls myminio/{{ .Values.initJob.bucketName }}/{{ .Values.initJob.fileName }} >/dev/null 2>&1; then
+                echo "File successfully verified in bucket."
+                break
+              else
+                echo "Waiting for file to appear (attempt $i)..."
+                sleep 2
+              fi
+            done
+            
+            if ! mc ls myminio/{{ .Values.initJob.bucketName }}/{{ .Values.initJob.fileName }} >/dev/null 2>&1; then
+              echo "File not found after upload verification. Exiting with error."
+              exit 1
+            fi
         env:
           - name: MINIO_ROOT_USER
             value: {{ .Values.minio.accessKey }}
